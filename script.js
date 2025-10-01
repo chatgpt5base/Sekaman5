@@ -350,15 +350,18 @@ let selectedAnswer = null;
 let quizStarted = false;
 let sidebarOpen = false;
 
-// DOM要素の取得
-const quizCategories = document.getElementById('quizCategories');
-const quizContainer = document.getElementById('quizContainer');
-const quizQuestion = document.getElementById('quizQuestion');
-const quizResult = document.getElementById('quizResult');
-const finalResult = document.getElementById('finalResult');
+// DOM要素の参照
+let quizContainer = null;
+let quizResult = null;
+let finalResult = null;
 
 // 初期化
 document.addEventListener('DOMContentLoaded', function() {
+    // DOM要素の取得
+    quizContainer = document.getElementById('quizContainer');
+    quizResult = document.getElementById('quizResult');
+    finalResult = document.getElementById('finalResult');
+    
     initializeApp();
 });
 
@@ -485,11 +488,16 @@ function selectCategory(category) {
     
     // 節のグリッドを非表示、クイズコンテナを表示
     const sectionsGrid = document.getElementById('sectionsGrid');
-    if (sectionsGrid) sectionsGrid.style.display = 'none';
+    if (sectionsGrid) {
+        sectionsGrid.style.display = 'none';
+    }
     
-    quizContainer.style.display = 'block';
-    quizResult.style.display = 'none';
-    finalResult.style.display = 'none';
+    if (quizContainer) {
+        quizContainer.style.display = 'block';
+    }
+    
+    if (quizResult) quizResult.style.display = 'none';
+    if (finalResult) finalResult.style.display = 'none';
     
     // 最初の問題を表示
     showQuestion();
@@ -658,10 +666,10 @@ function restartQuiz() {
 
 // カテゴリ選択に戻る
 function backToCategories() {
-    quizContainer.style.display = 'none';
+    if (quizContainer) quizContainer.style.display = 'none';
     const sectionsGrid = document.getElementById('sectionsGrid');
     if (sectionsGrid) sectionsGrid.style.display = 'grid';
-    finalResult.style.display = 'none';
+    if (finalResult) finalResult.style.display = 'none';
     currentCategory = null;
     quizStarted = false;
 }
