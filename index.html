@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界史クイズ - 漫画で楽しく学ぶ高校世界史</title>
+    <meta name="description" content="高校生向けの世界史学習サイト。クイズと漫画で楽しく世界史をマスターしよう！">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <i class="fas fa-globe-americas"></i>
+                    世界史クイズ
+                </h1>
+                <nav class="nav">
+                    <a href="#home" class="nav-link active">ホーム</a>
+                    <a href="#quiz" class="nav-link">クイズ</a>
+                    <a href="#about" class="nav-link">このサイトについて</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="main">
+        <!-- ヒーローセクション -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2 class="hero-title">
+                        <span class="highlight">漫画</span>で楽しく学ぶ<br>
+                        高校世界史
+                    </h2>
+                    <p class="hero-description">
+                        暗記が苦手でも大丈夫！<br>
+                        クイズと漫画の解説で、世界史の流れをストーリーで理解しよう
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="startQuiz()">
+                            <i class="fas fa-play"></i>
+                            クイズを始める
+                        </button>
+                        <button class="btn btn-secondary" onclick="scrollToSection('about')">
+                            <i class="fas fa-info-circle"></i>
+                            詳しく見る
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="mascot">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- クイズセクション -->
+        <section id="quiz" class="quiz-section">
+            <div class="container">
+                <div class="quiz-header">
+                    <h2 class="section-title">世界史クイズ</h2>
+                    <p class="section-description">時代別にクイズを選んで挑戦しよう！</p>
+                </div>
+
+                <!-- クイズカテゴリ選択 -->
+                <div class="quiz-categories" id="quizCategories">
+                    <div class="category-card" onclick="selectCategory('ancient')">
+                        <div class="category-icon">
+                            <i class="fas fa-pyramid"></i>
+                        </div>
+                        <h3>古代文明</h3>
+                        <p>エジプト、メソポタミア、インダス文明など</p>
+                        <span class="question-count">5問</span>
+                    </div>
+                    <div class="category-card" onclick="selectCategory('medieval')">
+                        <div class="category-icon">
+                            <i class="fas fa-castle"></i>
+                        </div>
+                        <h3>中世ヨーロッパ</h3>
+                        <p>フランク王国、十字軍、ルネサンスなど</p>
+                        <span class="question-count">5問</span>
+                    </div>
+                    <div class="category-card" onclick="selectCategory('modern')">
+                        <div class="category-icon">
+                            <i class="fas fa-industry"></i>
+                        </div>
+                        <h3>近現代史</h3>
+                        <p>産業革命、世界大戦、冷戦など</p>
+                        <span class="question-count">5問</span>
+                    </div>
+                </div>
+
+                <!-- クイズ画面 -->
+                <div class="quiz-container" id="quizContainer" style="display: none;">
+                    <div class="quiz-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <span class="progress-text" id="progressText">1 / 5</span>
+                    </div>
+
+                    <div class="quiz-question" id="quizQuestion">
+                        <h3 class="question-title" id="questionTitle"></h3>
+                        <div class="question-image" id="questionImage"></div>
+                        <div class="question-options" id="questionOptions"></div>
+                    </div>
+
+                    <div class="quiz-result" id="quizResult" style="display: none;">
+                        <div class="result-content">
+                            <div class="result-icon" id="resultIcon"></div>
+                            <h3 class="result-title" id="resultTitle"></h3>
+                            <p class="result-explanation" id="resultExplanation"></p>
+                            <div class="manga-explanation" id="mangaExplanation"></div>
+                            <button class="btn btn-primary" onclick="nextQuestion()" id="nextButton">
+                                次の問題へ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 最終結果 -->
+                <div class="final-result" id="finalResult" style="display: none;">
+                    <div class="result-summary">
+                        <h3>クイズ完了！</h3>
+                        <div class="score-display">
+                            <span class="score-number" id="finalScore">0</span>
+                            <span class="score-total">/ 5</span>
+                        </div>
+                        <p class="score-message" id="scoreMessage"></p>
+                        <div class="result-actions">
+                            <button class="btn btn-primary" onclick="restartQuiz()">
+                                <i class="fas fa-redo"></i>
+                                もう一度挑戦
+                            </button>
+                            <button class="btn btn-secondary" onclick="backToCategories()">
+                                <i class="fas fa-arrow-left"></i>
+                                カテゴリ選択に戻る
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- このサイトについて -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2 class="section-title">このサイトについて</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>世界史を楽しく学ぼう！</h3>
+                        <p>
+                            このサイトは、世界史の暗記が苦手な高校生のために作られました。
+                            従来の暗記中心の学習ではなく、<strong>漫画とクイズを組み合わせた解説</strong>で、
+                            世界史の流れをストーリーとして理解できるようにしています。
+                        </p>
+                        <div class="features">
+                            <div class="feature">
+                                <i class="fas fa-comic"></i>
+                                <h4>漫画解説</h4>
+                                <p>複雑な歴史の流れを漫画でわかりやすく解説</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-question-circle"></i>
+                                <h4>クイズ形式</h4>
+                                <p>理解度を確認できる4択クイズ</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-mobile-alt"></i>
+                                <h4>スマホ対応</h4>
+                                <p>通学時間やスキマ時間に最適</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 世界史クイズ. 高校生の学習を応援します。</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
