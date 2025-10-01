@@ -380,7 +380,7 @@ function showResult() {
         resultIcon.className = 'result-icon incorrect';
         resultIcon.innerHTML = '<span class="material-symbols-rounded">close</span>';
         resultTitle.textContent = '不正解...';
-        resultTitle.style.color = 'var(--accent-color)';
+        resultTitle.style.color = '#FF6B6B';
     }
     
     resultExplanation.textContent = question.explanation;
@@ -429,7 +429,7 @@ function showFinalResult() {
         scoreMessage.style.color = 'var(--primary-color)';
     } else {
         scoreMessage.textContent = '復習して、もう一度挑戦してみましょう！';
-        scoreMessage.style.color = 'var(--accent-color)';
+        scoreMessage.style.color = '#FF6B6B';
     }
 }
 
