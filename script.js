@@ -373,12 +373,12 @@ function showResult() {
     
     if (isCorrect) {
         resultIcon.className = 'result-icon correct';
-        resultIcon.innerHTML = '<i class="fas fa-check"></i>';
+        resultIcon.innerHTML = '<span class="material-symbols-rounded">check</span>';
         resultTitle.textContent = '正解！';
         resultTitle.style.color = 'var(--success-color)';
     } else {
         resultIcon.className = 'result-icon incorrect';
-        resultIcon.innerHTML = '<i class="fas fa-times"></i>';
+        resultIcon.innerHTML = '<span class="material-symbols-rounded">close</span>';
         resultTitle.textContent = '不正解...';
         resultTitle.style.color = 'var(--accent-color)';
     }

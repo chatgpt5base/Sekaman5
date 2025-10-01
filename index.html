@@ -7,7 +7,7 @@
     <meta name="description" content="高校生向けの世界史学習サイト。クイズと漫画で楽しく世界史をマスターしよう！">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
     <!-- ヘッダー -->
@@ -15,7 +15,7 @@
         <div class="container">
             <div class="header-content">
                 <h1 class="logo">
-                    <i class="fas fa-globe-americas"></i>
+                    <span class="material-symbols-rounded">public</span>
                     世界史クイズ
                 </h1>
                 <nav class="nav">
@@ -43,18 +43,18 @@
                     </p>
                     <div class="hero-buttons">
                         <button class="btn btn-primary" onclick="startQuiz()">
-                            <i class="fas fa-play"></i>
+                            <span class="material-symbols-rounded">play_arrow</span>
                             クイズを始める
                         </button>
                         <button class="btn btn-secondary" onclick="scrollToSection('about')">
-                            <i class="fas fa-info-circle"></i>
+                            <span class="material-symbols-rounded">info</span>
                             詳しく見る
                         </button>
                     </div>
                 </div>
                 <div class="hero-image">
                     <div class="mascot">
-                        <i class="fas fa-graduation-cap"></i>
+                        <span class="material-symbols-rounded">school</span>
                     </div>
                 </div>
             </div>
@@ -72,7 +72,7 @@
                 <div class="quiz-categories" id="quizCategories">
                     <div class="category-card" onclick="selectCategory('ancient')">
                         <div class="category-icon">
-                            <i class="fas fa-pyramid"></i>
+                            <span class="material-symbols-rounded">temple_buddhist</span>
                         </div>
                         <h3>古代文明</h3>
                         <p>エジプト、メソポタミア、インダス文明など</p>
@@ -80,7 +80,7 @@
                     </div>
                     <div class="category-card" onclick="selectCategory('medieval')">
                         <div class="category-icon">
-                            <i class="fas fa-castle"></i>
+                            <span class="material-symbols-rounded">castle</span>
                         </div>
                         <h3>中世ヨーロッパ</h3>
                         <p>フランク王国、十字軍、ルネサンスなど</p>
@@ -88,7 +88,7 @@
                     </div>
                     <div class="category-card" onclick="selectCategory('modern')">
                         <div class="category-icon">
-                            <i class="fas fa-industry"></i>
+                            <span class="material-symbols-rounded">factory</span>
                         </div>
                         <h3>近現代史</h3>
                         <p>産業革命、世界大戦、冷戦など</p>
@@ -135,11 +135,11 @@
                         <p class="score-message" id="scoreMessage"></p>
                         <div class="result-actions">
                             <button class="btn btn-primary" onclick="restartQuiz()">
-                                <i class="fas fa-redo"></i>
+                                <span class="material-symbols-rounded">refresh</span>
                                 もう一度挑戦
                             </button>
                             <button class="btn btn-secondary" onclick="backToCategories()">
-                                <i class="fas fa-arrow-left"></i>
+                                <span class="material-symbols-rounded">arrow_back</span>
                                 カテゴリ選択に戻る
                             </button>
                         </div>
@@ -162,17 +162,17 @@
                         </p>
                         <div class="features">
                             <div class="feature">
-                                <i class="fas fa-comic"></i>
+                                <span class="material-symbols-rounded">auto_stories</span>
                                 <h4>漫画解説</h4>
                                 <p>複雑な歴史の流れを漫画でわかりやすく解説</p>
                             </div>
                             <div class="feature">
-                                <i class="fas fa-question-circle"></i>
+                                <span class="material-symbols-rounded">quiz</span>
                                 <h4>クイズ形式</h4>
                                 <p>理解度を確認できる4択クイズ</p>
                             </div>
                             <div class="feature">
-                                <i class="fas fa-mobile-alt"></i>
+                                <span class="material-symbols-rounded">phone_android</span>
                                 <h4>スマホ対応</h4>
                                 <p>通学時間やスキマ時間に最適</p>
                             </div>
@@ -190,10 +190,10 @@
                 <p>&copy; 2024 世界史クイズ. 高校生の学習を応援します。</p>
                 <div class="social-links">
                     <a href="#" class="social-link">
-                        <i class="fab fa-twitter"></i>
+                        <span class="material-symbols-rounded">share</span>
                     </a>
                     <a href="#" class="social-link">
-                        <i class="fab fa-instagram"></i>
+                        <span class="material-symbols-rounded">favorite</span>
                     </a>
                 </div>
             </div>
