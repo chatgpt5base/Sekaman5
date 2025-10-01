@@ -173,6 +173,7 @@ let currentQuestionIndex = 0;
 let score = 0;
 let selectedAnswer = null;
 let quizStarted = false;
+let sidebarOpen = false;
 
 // DOM要素の取得
 const quizCategories = document.getElementById('quizCategories');
@@ -187,8 +188,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initializeApp() {
-    // ナビゲーションのスムーススクロール
-    setupNavigation();
+    // サイドバーの初期化
+    setupSidebar();
     
     // ヘッダーのスクロール効果
     setupHeaderScroll();
@@ -197,21 +198,28 @@ function initializeApp() {
     setupAnimations();
 }
 
-// ナビゲーション設定
-function setupNavigation() {
-    const navLinks = document.querySelectorAll('.nav-link');
+// サイドバー設定
+function setupSidebar() {
+    // デスクトップでは自動でサイドバーを開く
+    if (window.innerWidth > 768) {
+        toggleSidebar();
+    }
+}
+
+// サイドバーの開閉
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const main = document.querySelector('.main');
     
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            scrollToSection(targetId);
-            
-            // アクティブ状態の更新
-            navLinks.forEach(l => l.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
+    sidebarOpen = !sidebarOpen;
+    
+    if (sidebarOpen) {
+        sidebar.classList.add('open');
+        main.classList.add('with-sidebar');
+    } else {
+        sidebar.classList.remove('open');
+        main.classList.remove('with-sidebar');
+    }
 }
 
 // セクションへのスムーススクロール
@@ -258,9 +266,39 @@ function setupAnimations() {
     elementsToAnimate.forEach(el => observer.observe(el));
 }
 
+// 章選択
+function selectChapter(chapterId) {
+    // 章のアクティブ状態を更新
+    const chapterItems = document.querySelectorAll('.chapter-item');
+    chapterItems.forEach(item => item.classList.remove('active'));
+    event.target.closest('.chapter-item').classList.add('active');
+    
+    // 章の内容を表示
+    scrollToSection(chapterId);
+}
+
+// 節選択
+function selectSection(sectionId) {
+    // 節に応じたクイズを開始
+    switch(sectionId) {
+        case 'section1':
+            startQuiz('industrial');
+            break;
+        case 'section2':
+            startQuiz('american');
+            break;
+        case 'section3':
+            startQuiz('french');
+            break;
+        case 'section4':
+            startQuiz('latin');
+            break;
+    }
+}
+
 // クイズ開始
-function startQuiz() {
-    scrollToSection('quiz');
+function startQuiz(category) {
+    selectCategory(category);
 }
 
 // カテゴリ選択
@@ -270,8 +308,10 @@ function selectCategory(category) {
     score = 0;
     quizStarted = true;
     
-    // クイズカテゴリを非表示、クイズコンテナを表示
-    quizCategories.style.display = 'none';
+    // 節のグリッドを非表示、クイズコンテナを表示
+    const sectionsGrid = document.getElementById('sectionsGrid');
+    if (sectionsGrid) sectionsGrid.style.display = 'none';
+    
     quizContainer.style.display = 'block';
     quizResult.style.display = 'none';
     finalResult.style.display = 'none';
@@ -444,7 +484,8 @@ function restartQuiz() {
 // カテゴリ選択に戻る
 function backToCategories() {
     quizContainer.style.display = 'none';
-    quizCategories.style.display = 'grid';
+    const sectionsGrid = document.getElementById('sectionsGrid');
+    if (sectionsGrid) sectionsGrid.style.display = 'grid';
     finalResult.style.display = 'none';
     currentCategory = null;
     quizStarted = false;

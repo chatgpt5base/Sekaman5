@@ -12,22 +12,23 @@
     --accent-color: #3A59CB;
     --success-color: #4ECDC4;
     --warning-color: #FFE66D;
-    --text-color: #2C3E50;
-    --text-light: #7F8C8D;
+    --text-color: #1A1A1A;
+    --text-light: #4A4A4A;
     --bg-color: #E1E8FD;
     --white: #ffffff;
-    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.15);
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.2);
     --border-radius: 12px;
     --transition: all 0.3s ease;
 }
 
 body {
     font-family: 'Noto Sans JP', sans-serif;
-    line-height: 1.6;
+    line-height: 1.7;
     color: var(--text-color);
     background-color: var(--bg-color);
     overflow-x: hidden;
+    font-weight: 400;
 }
 
 .container {
@@ -52,7 +53,26 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 0;
+    padding: 1rem 2rem;
+}
+
+.menu-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.menu-toggle:hover {
+    background: var(--bg-color);
+}
+
+.menu-toggle .material-symbols-rounded {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
 .logo {
@@ -69,145 +89,325 @@ body {
     font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
-.nav {
+.header-actions {
     display: flex;
-    gap: 2rem;
+    gap: 0.5rem;
 }
 
-.nav-link {
-    text-decoration: none;
-    color: var(--text-color);
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    border-radius: var(--border-radius);
+.header-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
     transition: var(--transition);
 }
 
-.nav-link:hover,
-.nav-link.active {
-    background-color: var(--primary-color);
-    color: var(--white);
+.header-btn:hover {
+    background: var(--bg-color);
+}
+
+.header-btn .material-symbols-rounded {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* サイドバー */
+.sidebar {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 280px;
+    height: calc(100vh - 80px);
+    background: var(--white);
+    box-shadow: var(--shadow);
+    z-index: 999;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+}
+
+.sidebar.open {
+    transform: translateX(0);
+}
+
+.sidebar-content {
+    padding: 2rem 1.5rem;
+}
+
+.sidebar-section {
+    margin-bottom: 2rem;
+}
+
+.sidebar-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--bg-color);
+}
+
+.chapter-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.chapter-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    border-left: 4px solid transparent;
+}
+
+.chapter-item:hover {
+    background: var(--bg-color);
+}
+
+.chapter-item.active {
+    background: var(--bg-color);
+    border-left-color: var(--primary-color);
+}
+
+.chapter-number {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-right: 0.8rem;
+    min-width: 40px;
+}
+
+.chapter-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-color);
+    line-height: 1.4;
+}
+
+.recommended-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.recommended-item {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.recommended-item:hover {
+    background: var(--bg-color);
+}
+
+.recommended-item .material-symbols-rounded {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-right: 0.8rem;
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+}
+
+.recommended-text {
+    flex: 1;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.recommended-count {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    font-weight: 500;
 }
 
 /* メインコンテンツ */
 .main {
     margin-top: 80px;
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+}
+
+.main.with-sidebar {
+    margin-left: 280px;
 }
 
 /* ヒーローセクション */
 .hero {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #2A4BB8 100%);
-    color: var(--white);
-    padding: 4rem 0;
-    min-height: 70vh;
-    display: flex;
-    align-items: center;
-}
-
-.hero .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-}
-
-.hero-title {
-    font-size: 3rem;
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
-}
-
-.highlight {
-    background: #FF6B6B;
-    padding: 0.2rem 0.5rem;
-    border-radius: 8px;
-    display: inline-block;
-    transform: rotate(-2deg);
-}
-
-.hero-description {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.btn {
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: var(--border-radius);
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    text-decoration: none;
-    text-align: center;
-}
-
-.btn .material-symbols-rounded {
-    font-size: 1.2rem;
-    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20;
-}
-
-.btn-primary {
-    background: var(--primary-color);
-    color: var(--white);
-}
-
-.btn-primary:hover {
-    background: #2A4BB8;
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-hover);
-}
-
-.btn-secondary {
-    background: transparent;
-    color: var(--white);
-    border: 2px solid var(--white);
-}
-
-.btn-secondary:hover {
     background: var(--white);
-    color: var(--primary-color);
+    padding: 2rem;
+    margin: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
 }
 
 .hero-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    flex: 1;
+    max-width: 400px;
 }
 
-.mascot {
-    width: 200px;
+.hero-img {
+    width: 100%;
     height: 200px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+/* 章セクション */
+.chapter-section {
+    padding: 2rem;
+}
+
+.chapter-header {
+    margin-bottom: 2rem;
+}
+
+.sections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.section-card {
     background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 1px solid rgba(58, 89, 203, 0.1);
+}
+
+.section-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.section-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.section-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.section-card:hover .section-img {
+    transform: scale(1.05);
+}
+
+.section-content {
+    padding: 1.5rem;
+}
+
+.section-content .section-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    text-align: left;
+}
+
+.section-content .section-description {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: left;
+}
+
+/* 学習方法セクション */
+.howto-section {
+    padding: 2rem;
+    background: var(--white);
+    margin: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.howto-content {
+    text-align: center;
+}
+
+.howto-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+
+.howto-steps {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--bg-color);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(58, 89, 203, 0.1);
+}
+
+.step-number {
+    width: 30px;
+    height: 30px;
+    background: var(--primary-color);
+    color: var(--white);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 4rem;
-    color: var(--primary-color);
-    box-shadow: var(--shadow-hover);
-    animation: float 3s ease-in-out infinite;
+    font-weight: 600;
+    font-size: 0.9rem;
 }
 
-.mascot .material-symbols-rounded {
-    font-size: 4rem;
-    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
+.step-text {
+    font-size: 0.95rem;
+    color: var(--text-color);
+    font-weight: 500;
 }
 
 /* セクション共通 */
@@ -217,6 +417,7 @@ body {
     text-align: center;
     margin-bottom: 1rem;
     color: var(--text-color);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .section-description {
@@ -224,6 +425,7 @@ body {
     color: var(--text-light);
     font-size: 1.1rem;
     margin-bottom: 3rem;
+    font-weight: 500;
 }
 
 /* クイズセクション */
@@ -248,6 +450,7 @@ body {
     cursor: pointer;
     transition: var(--transition);
     border: 2px solid transparent;
+    border: 1px solid rgba(58, 89, 203, 0.1);
 }
 
 .category-card:hover {
@@ -278,11 +481,13 @@ body {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
     color: var(--text-color);
+    font-weight: 600;
 }
 
 .category-card p {
     color: var(--text-light);
     margin-bottom: 1rem;
+    font-weight: 500;
 }
 
 .question-count {
@@ -302,6 +507,7 @@ body {
     border-radius: var(--border-radius);
     padding: 2rem;
     box-shadow: var(--shadow);
+    border: 1px solid rgba(58, 89, 203, 0.1);
 }
 
 .quiz-progress {
@@ -341,7 +547,8 @@ body {
     font-size: 1.5rem;
     margin-bottom: 2rem;
     color: var(--text-color);
-    line-height: 1.4;
+    line-height: 1.5;
+    font-weight: 600;
 }
 
 .question-image {
@@ -373,6 +580,8 @@ body {
     transition: var(--transition);
     text-align: left;
     font-size: 1rem;
+    font-weight: 500;
+    border: 1px solid rgba(58, 89, 203, 0.1);
 }
 
 .option:hover {
@@ -439,13 +648,15 @@ body {
     font-size: 1.8rem;
     margin-bottom: 1rem;
     color: var(--text-color);
+    font-weight: 600;
 }
 
 .result-explanation {
     font-size: 1.1rem;
     color: var(--text-light);
     margin-bottom: 2rem;
-    line-height: 1.6;
+    line-height: 1.7;
+    font-weight: 500;
 }
 
 .manga-explanation {
@@ -471,12 +682,14 @@ body {
     color: var(--text-color);
     margin-bottom: 0.5rem;
     font-size: 1.1rem;
+    font-weight: 600;
 }
 
 .manga-explanation p {
     color: var(--text-light);
     font-size: 0.95rem;
-    line-height: 1.5;
+    line-height: 1.6;
+    font-weight: 500;
 }
 
 /* 最終結果 */
@@ -488,12 +701,14 @@ body {
     box-shadow: var(--shadow);
     max-width: 600px;
     margin: 0 auto;
+    border: 1px solid rgba(58, 89, 203, 0.1);
 }
 
 .result-summary h3 {
     font-size: 2rem;
     margin-bottom: 1.5rem;
     color: var(--text-color);
+    font-weight: 700;
 }
 
 .score-display {
@@ -519,6 +734,7 @@ body {
     font-size: 1.2rem;
     color: var(--text-light);
     margin-bottom: 2rem;
+    font-weight: 500;
 }
 
 .result-actions {
@@ -543,13 +759,15 @@ body {
     font-size: 1.8rem;
     margin-bottom: 1rem;
     color: var(--text-color);
+    font-weight: 700;
 }
 
 .about-text p {
     font-size: 1.1rem;
     color: var(--text-light);
     margin-bottom: 2rem;
-    line-height: 1.7;
+    line-height: 1.8;
+    font-weight: 500;
 }
 
 .features {
@@ -565,6 +783,7 @@ body {
     background: var(--white);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
+    border: 1px solid rgba(58, 89, 203, 0.1);
 }
 
 .feature .material-symbols-rounded {
@@ -578,11 +797,13 @@ body {
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
     color: var(--text-color);
+    font-weight: 600;
 }
 
 .feature p {
     color: var(--text-light);
     font-size: 0.95rem;
+    font-weight: 500;
 }
 
 /* フッター */
@@ -631,22 +852,62 @@ body {
 
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
-    .container {
-        padding: 0 15px;
-    }
-    
     .header-content {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem 0;
-    }
-    
-    .nav {
-        gap: 1rem;
+        padding: 1rem;
     }
     
     .main {
-        margin-top: 120px;
+        margin-top: 80px;
+    }
+    
+    .main.with-sidebar {
+        margin-left: 0;
+    }
+    
+    .sidebar {
+        width: 100%;
+        transform: translateX(-100%);
+    }
+    
+    .sidebar.open {
+        transform: translateX(0);
+    }
+    
+    .hero {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .hero-content {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .hero-image {
+        max-width: 100%;
+    }
+    
+    .hero-img {
+        height: 150px;
+    }
+    
+    .chapter-section {
+        padding: 1rem;
+    }
+    
+    .sections-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .howto-section {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .howto-steps {
+        flex-direction: column;
+        gap: 1rem;
     }
     
     .hero .container {
@@ -657,6 +918,7 @@ body {
     
     .hero-title {
         font-size: 2.2rem;
+        line-height: 1.4;
     }
     
     .hero-description {
@@ -675,6 +937,7 @@ body {
     
     .section-title {
         font-size: 2rem;
+        line-height: 1.3;
     }
     
     .quiz-categories {
@@ -693,6 +956,7 @@ body {
     
     .question-title {
         font-size: 1.3rem;
+        line-height: 1.4;
     }
     
     .question-image {
@@ -723,6 +987,7 @@ body {
 @media (max-width: 480px) {
     .hero-title {
         font-size: 1.8rem;
+        line-height: 1.3;
     }
     
     .hero-description {
@@ -731,6 +996,7 @@ body {
     
     .section-title {
         font-size: 1.8rem;
+        line-height: 1.3;
     }
     
     .quiz-container {
@@ -739,6 +1005,7 @@ body {
     
     .question-title {
         font-size: 1.2rem;
+        line-height: 1.4;
     }
     
     .category-card {

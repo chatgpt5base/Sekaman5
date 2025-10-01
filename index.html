@@ -12,89 +12,128 @@
 <body>
     <!-- ヘッダー -->
     <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <h1 class="logo">
-                    <span class="material-symbols-rounded">public</span>
-                    世界史クイズ
-                </h1>
-                <nav class="nav">
-                    <a href="#home" class="nav-link active">ホーム</a>
-                    <a href="#quiz" class="nav-link">クイズ</a>
-                    <a href="#about" class="nav-link">このサイトについて</a>
-                </nav>
+        <div class="header-content">
+            <button class="menu-toggle" onclick="toggleSidebar()">
+                <span class="material-symbols-rounded">menu</span>
+            </button>
+            <h1 class="logo">
+                <span class="material-symbols-rounded">public</span>
+                世界史クイズ
+            </h1>
+            <div class="header-actions">
+                <button class="header-btn">
+                    <span class="material-symbols-rounded">search</span>
+                </button>
+                <button class="header-btn">
+                    <span class="material-symbols-rounded">apps</span>
+                </button>
+                <button class="header-btn">
+                    <span class="material-symbols-rounded">account_circle</span>
+                </button>
             </div>
         </div>
     </header>
+
+    <!-- サイドバー -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">章一覧</h3>
+                <ul class="chapter-list">
+                    <li class="chapter-item active" onclick="selectChapter('chapter12')">
+                        <span class="chapter-number">12章</span>
+                        <span class="chapter-title">産業革命と環大西洋革命</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">おすすめのクイズ</h3>
+                <ul class="recommended-list">
+                    <li class="recommended-item" onclick="startQuiz('industrial')">
+                        <span class="material-symbols-rounded">quiz</span>
+                        <span class="recommended-text">産業革命クイズ</span>
+                        <span class="recommended-count">500問</span>
+                    </li>
+                    <li class="recommended-item" onclick="startQuiz('american')">
+                        <span class="material-symbols-rounded">quiz</span>
+                        <span class="recommended-text">アメリカ独立クイズ</span>
+                        <span class="recommended-count">1K問</span>
+                    </li>
+                    <li class="recommended-item" onclick="startQuiz('french')">
+                        <span class="material-symbols-rounded">quiz</span>
+                        <span class="recommended-text">フランス革命クイズ</span>
+                        <span class="recommended-count">750問</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </aside>
 
     <!-- メインコンテンツ -->
     <main class="main">
         <!-- ヒーローセクション -->
         <section id="home" class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h2 class="hero-title">
-                        <span class="highlight">漫画</span>で楽しく学ぶ<br>
-                        高校世界史
-                    </h2>
-                    <p class="hero-description">
-                        暗記が苦手でも大丈夫！<br>
-                        クイズと漫画の解説で、世界史の流れをストーリーで理解しよう
-                    </p>
-                    <div class="hero-buttons">
-                        <button class="btn btn-primary" onclick="startQuiz()">
-                            <span class="material-symbols-rounded">play_arrow</span>
-                            クイズを始める
-                        </button>
-                        <button class="btn btn-secondary" onclick="scrollToSection('about')">
-                            <span class="material-symbols-rounded">info</span>
-                            詳しく見る
-                        </button>
-                    </div>
-                </div>
+            <div class="hero-content">
                 <div class="hero-image">
-                    <div class="mascot">
-                        <span class="material-symbols-rounded">school</span>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=400&fit=crop" alt="学生が漫画を読んでいる様子" class="hero-img">
+                </div>
+                <div class="hero-text">
+                    <h2 class="hero-title">世界史を学ぼう</h2>
+                    <p class="hero-description">世界史の重要な意味や節に基づいたクイズを紹介します。</p>
                 </div>
             </div>
         </section>
 
-        <!-- クイズセクション -->
-        <section id="quiz" class="quiz-section">
-            <div class="container">
-                <div class="quiz-header">
-                    <h2 class="section-title">世界史クイズ</h2>
-                    <p class="section-description">時代別にクイズを選んで挑戦しよう！</p>
-                </div>
+        <!-- 章の内容セクション -->
+        <section id="chapter12" class="chapter-section">
+            <div class="chapter-header">
+                <h2 class="section-title">12章：産業革命と環大西洋革命</h2>
+                <p class="section-description">産業革命から環大西洋革命までの重要な出来事を学ぼう</p>
+            </div>
 
-                <!-- クイズカテゴリ選択 -->
-                <div class="quiz-categories" id="quizCategories">
-                    <div class="category-card" onclick="selectCategory('ancient')">
-                        <div class="category-icon">
-                            <span class="material-symbols-rounded">temple_buddhist</span>
-                        </div>
-                        <h3>古代文明</h3>
-                        <p>エジプト、メソポタミア、インダス文明など</p>
-                        <span class="question-count">5問</span>
+            <!-- 節の一覧 -->
+            <div class="sections-grid" id="sectionsGrid">
+                <div class="section-card" onclick="selectSection('section1')">
+                    <div class="section-image">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=200&fit=crop" alt="産業革命" class="section-img">
                     </div>
-                    <div class="category-card" onclick="selectCategory('medieval')">
-                        <div class="category-icon">
-                            <span class="material-symbols-rounded">castle</span>
-                        </div>
-                        <h3>中世ヨーロッパ</h3>
-                        <p>フランク王国、十字軍、ルネサンスなど</p>
-                        <span class="question-count">5問</span>
-                    </div>
-                    <div class="category-card" onclick="selectCategory('modern')">
-                        <div class="category-icon">
-                            <span class="material-symbols-rounded">factory</span>
-                        </div>
-                        <h3>近現代史</h3>
-                        <p>産業革命、世界大戦、冷戦など</p>
-                        <span class="question-count">5問</span>
+                    <div class="section-content">
+                        <h3 class="section-title">1. 産業革命</h3>
+                        <p class="section-description">18世紀後半にイギリスで始まった工業化の波</p>
                     </div>
                 </div>
+                
+                <div class="section-card" onclick="selectSection('section2')">
+                    <div class="section-image">
+                        <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=200&fit=crop" alt="アメリカ独立" class="section-img">
+                    </div>
+                    <div class="section-content">
+                        <h3 class="section-title">2. アメリカ合衆国の独立と発展</h3>
+                        <p class="section-description">13植民地の独立戦争と新国家の建設</p>
+                    </div>
+                </div>
+                
+                <div class="section-card" onclick="selectSection('section3')">
+                    <div class="section-image">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=200&fit=crop" alt="フランス革命" class="section-img">
+                    </div>
+                    <div class="section-content">
+                        <h3 class="section-title">3. フランス革命とナポレオンの支配</h3>
+                        <p class="section-description">絶対王政の終焉とナポレオン帝国の興亡</p>
+                    </div>
+                </div>
+                
+                <div class="section-card" onclick="selectSection('section4')">
+                    <div class="section-image">
+                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=400&h=200&fit=crop" alt="中南米独立" class="section-img">
+                    </div>
+                    <div class="section-content">
+                        <h3 class="section-title">4. 中南米諸国の独立</h3>
+                        <p class="section-description">スペイン・ポルトガルからの独立運動</p>
+                    </div>
+                </div>
+            </div>
 
                 <!-- クイズ画面 -->
                 <div class="quiz-container" id="quizContainer" style="display: none;">
@@ -148,35 +187,18 @@
             </div>
         </section>
 
-        <!-- このサイトについて -->
-        <section id="about" class="about-section">
-            <div class="container">
-                <h2 class="section-title">このサイトについて</h2>
-                <div class="about-content">
-                    <div class="about-text">
-                        <h3>世界史を楽しく学ぼう！</h3>
-                        <p>
-                            このサイトは、世界史の暗記が苦手な高校生のために作られました。
-                            従来の暗記中心の学習ではなく、<strong>漫画とクイズを組み合わせた解説</strong>で、
-                            世界史の流れをストーリーとして理解できるようにしています。
-                        </p>
-                        <div class="features">
-                            <div class="feature">
-                                <span class="material-symbols-rounded">auto_stories</span>
-                                <h4>漫画解説</h4>
-                                <p>複雑な歴史の流れを漫画でわかりやすく解説</p>
-                            </div>
-                            <div class="feature">
-                                <span class="material-symbols-rounded">quiz</span>
-                                <h4>クイズ形式</h4>
-                                <p>理解度を確認できる4択クイズ</p>
-                            </div>
-                            <div class="feature">
-                                <span class="material-symbols-rounded">phone_android</span>
-                                <h4>スマホ対応</h4>
-                                <p>通学時間やスキマ時間に最適</p>
-                            </div>
-                        </div>
+        <!-- 学習方法セクション -->
+        <section id="howto" class="howto-section">
+            <div class="howto-content">
+                <h2 class="howto-title">世界史の学び方</h2>
+                <div class="howto-steps">
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <p class="step-text">興味のある章を選んでください。</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <p class="step-text">関連するクイズのリンクをクリックしてください。</p>
                     </div>
                 </div>
             </div>
